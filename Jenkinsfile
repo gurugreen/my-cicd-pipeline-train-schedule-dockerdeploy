@@ -28,7 +28,7 @@ pipeline {
            }
            steps {
 				script {
-				    withDockerRegistry('https://registry.hub.docker.com','docker_hub_login'){
+				    docker.withRegistry('https://registry.hub.docker.com','docker_hub_login'){
 				        customImage.push("gurugreen:${env.BUILD_ID}")
 				        customImage.push("gurugreen:latest")
 				    }

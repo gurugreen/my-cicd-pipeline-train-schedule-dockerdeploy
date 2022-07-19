@@ -14,7 +14,7 @@ pipeline {
            }
            steps {
                script {
-                   customImage = docker.build("gurugreen:${env.BUILD_ID}")
+                   customImage = docker.build("gurugreen/newtest")
                    customImage.inside {
                        sh 'echo $(curl localhost:8080)'
                    }
@@ -29,8 +29,8 @@ pipeline {
            steps {
 				script {
 				    docker.withRegistry('https://registry.hub.docker.com','docker_hub_login'){
-				        customImage.push("gurugreen:${env.BUILD_ID}")
-				        customImage.push("gurugreen:latest")
+				        customImage.push("${env.BUILD_ID}")
+				        customImage.push("latest")
 				    }
 
 				}
